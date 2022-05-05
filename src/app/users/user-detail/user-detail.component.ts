@@ -9,9 +9,9 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnInit {
-  userId: string = '';
+  userId  = '';
   userForm: FormGroup;
-  errorMessage: string | null = null;
+  errorMessage: string | null = "";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -51,6 +51,7 @@ export class UserDetailComponent implements OnInit {
   getUser() {
     this.userService.getUserById(this.userId).subscribe({
       next: (data: any) => {
+        this.errorMessage = null;
         this.userForm.patchValue(data)
       },
       error: (err: any) => {
