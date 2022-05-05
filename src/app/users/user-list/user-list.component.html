@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <h2 class="mb-3 text-center">User List</h2>
+  <table class="table user-table">
+    <thead class="table-dark">
+      <tr>
+        <th *ngFor="let column of tableHeaders">
+          {{column}}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users$ | async">
+        <td> {{user.name}} </td>
+        <td> {{user.username}} </td>
+        <td> {{user.email}} </td>
+        <td>
+          {{[
+          user.address?.street,
+          user.address?.suite,
+          user.address?.city,
+          user.address?.zipcode
+          ].join(', ')}}
+        </td>
+        <td> {{user.phone}} </td>
+        <td> {{user.website}} </td>
+        <td> {{user.company?.name }} </td>
+        <td>
+          <a [routerLink]="['/users/edit', user.id]" class="btn btn-primary btn-sm">
+            <span>Edit</span>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
